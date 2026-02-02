@@ -1,0 +1,106 @@
+[gd_scene load_steps=11 format=3 uid="uid://b2i8v1gtfkvb0"]
+
+[ext_resource type="FontFile" uid="uid://e3jugcx6ohc2" path="res://assets/Square.ttf" id="1_2uo18"]
+[ext_resource type="Script" path="res://scripts/menu_ui.gd" id="2_sy3f7"]
+[ext_resource type="FontFile" uid="uid://dvuqmabjlk6ao" path="res://assets/Squareo.ttf" id="3_pwxbx"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3h4k4"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_36odf"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fk0v3"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_uxbk8"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mmukc"]
+
+[sub_resource type="Theme" id="Theme_843dc"]
+default_font_size = 30
+Button/colors/font_hover_color = Color(0.506789, 0.506789, 0.506789, 1)
+Button/font_sizes/font_size = 60
+Button/fonts/font = ExtResource("1_2uo18")
+Button/styles/disabled = SubResource("StyleBoxEmpty_3h4k4")
+Button/styles/focus = SubResource("StyleBoxEmpty_36odf")
+Button/styles/hover = SubResource("StyleBoxEmpty_fk0v3")
+Button/styles/normal = SubResource("StyleBoxEmpty_uxbk8")
+Button/styles/pressed = SubResource("StyleBoxEmpty_mmukc")
+Label/colors/font_color = Color(0.527155, 0.527155, 0.527155, 1)
+Label/font_sizes/font_size = 20
+Label/fonts/font = ExtResource("1_2uo18")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_py1bu"]
+content_margin_left = 30.0
+content_margin_top = 220.0
+content_margin_right = 30.0
+content_margin_bottom = 60.0
+bg_color = Color(0, 0, 0, 0.901961)
+
+[node name="MenuUI" type="Control"]
+process_mode = 3
+z_index = 21
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_843dc")
+script = ExtResource("2_sy3f7")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_py1bu")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.839433, 0.839433, 0.839433, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 70
+theme_override_fonts/font = ExtResource("3_pwxbx")
+theme_override_font_sizes/font_size = 220
+text = "PONG"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="1_PlayerButton" type="Button" parent="PanelContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "1  Player"
+
+[node name="2_PlayersButton" type="Button" parent="PanelContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "2  Players"
+
+[node name="ExitButton" type="Button" parent="PanelContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 45
+text = "Exit"
+
+[node name="Control" type="Control" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="AdditionalInfo" type="Label" parent="PanelContainer/VBoxContainer/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -0.000976563
+offset_top = -6.10352e-05
+offset_right = -0.000976563
+offset_bottom = 21.9999
+grow_horizontal = 2
+grow_vertical = 2
+text = "Press \"ESC\" to restart"
+horizontal_alignment = 1
+vertical_alignment = 1

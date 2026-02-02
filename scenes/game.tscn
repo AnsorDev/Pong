@@ -1,0 +1,123 @@
+[gd_scene load_steps=9 format=3 uid="uid://cs3f8h3xqpvgl"]
+
+[ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_4p1os"]
+[ext_resource type="PackedScene" uid="uid://caw43tunaqi7y" path="res://scenes/score_ui.tscn" id="2_8y3jn"]
+[ext_resource type="PackedScene" uid="uid://c16wymjfmo52y" path="res://scenes/player.tscn" id="2_iiw6k"]
+[ext_resource type="PackedScene" uid="uid://b2i8v1gtfkvb0" path="res://scenes/menu_ui.tscn" id="3_3m10s"]
+[ext_resource type="AudioStream" uid="uid://317xjba5jngy" path="res://assets/pong.mp3" id="5_6aqlh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rg38i"]
+size = Vector2(1752, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xq36m"]
+size = Vector2(16, 1656)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pl8mm"]
+size = Vector2(16, 172)
+
+[node name="Game" type="Node2D"]
+
+[node name="GameManager" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("1_4p1os")
+
+[node name="AudioStreamPlayerMusic" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+process_mode = 3
+stream = ExtResource("5_6aqlh")
+volume_db = -4.0
+autoplay = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="BackgroundColor" type="ColorRect" parent="CanvasLayer"]
+z_index = -1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="ScoreUI" parent="CanvasLayer" instance=ExtResource("2_8y3jn")]
+unique_name_in_owner = true
+z_index = 20
+
+[node name="MenuUI" parent="CanvasLayer" instance=ExtResource("3_3m10s")]
+unique_name_in_owner = true
+offset_left = -108.0
+offset_top = -43.0
+offset_right = 96.0
+offset_bottom = 93.0
+
+[node name="Players" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="Player" parent="Players" groups=["Player_1", "Players"] instance=ExtResource("2_iiw6k")]
+position = Vector2(80, 540)
+
+[node name="Player2" parent="Players" groups=["Player_2", "Players"] instance=ExtResource("2_iiw6k")]
+position = Vector2(1840, 540)
+rotation = 3.14159
+
+[node name="Walls" type="Node2D" parent="."]
+
+[node name="Wall" type="StaticBody2D" parent="Walls"]
+position = Vector2(960, -16)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Wall"]
+position = Vector2(0, 8)
+shape = SubResource("RectangleShape2D_rg38i")
+
+[node name="Wall2" type="StaticBody2D" parent="Walls"]
+position = Vector2(960, 1088)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Wall2"]
+shape = SubResource("RectangleShape2D_rg38i")
+
+[node name="Goals" type="Node2D" parent="."]
+
+[node name="Player1_GoalArea" type="Area2D" parent="Goals"]
+unique_name_in_owner = true
+position = Vector2(0, 540)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Goals/Player1_GoalArea"]
+position = Vector2(-8, -32)
+shape = SubResource("RectangleShape2D_xq36m")
+debug_color = Color(0.256669, 1, 0.526924, 0.42)
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Goals/Player1_GoalArea"]
+position = Vector2(88, -583)
+rotation = 1.57079
+shape = SubResource("RectangleShape2D_pl8mm")
+debug_color = Color(0.256669, 1, 0.526924, 0.42)
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Goals/Player1_GoalArea"]
+position = Vector2(88, 581)
+rotation = -1.5708
+shape = SubResource("RectangleShape2D_pl8mm")
+debug_color = Color(0.256669, 1, 0.526924, 0.42)
+
+[node name="Player2_GoalArea" type="Area2D" parent="Goals"]
+unique_name_in_owner = true
+position = Vector2(1936, 540)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Goals/Player2_GoalArea"]
+position = Vector2(-8, 0)
+shape = SubResource("RectangleShape2D_xq36m")
+debug_color = Color(0.254902, 1, 0.52549, 0.419608)
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Goals/Player2_GoalArea"]
+position = Vector2(-106, -583)
+rotation = 1.57079
+shape = SubResource("RectangleShape2D_pl8mm")
+debug_color = Color(0.256669, 1, 0.526924, 0.42)
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Goals/Player2_GoalArea"]
+position = Vector2(-106, 581)
+rotation = -1.5708
+shape = SubResource("RectangleShape2D_pl8mm")
+debug_color = Color(0.256669, 1, 0.526924, 0.42)
